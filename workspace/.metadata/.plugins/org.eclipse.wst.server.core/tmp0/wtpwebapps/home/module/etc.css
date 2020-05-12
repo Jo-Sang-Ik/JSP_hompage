@@ -1,0 +1,54 @@
+@font-face { font-family: 'MapoPeacefull'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoPeacefullA.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+* { font-family: 'MapoPeacefull';}
+
+#container { width: 100%; }
+.imgbtn { cursor: pointer;}
+
+body { margin: 0;}
+
+header { position: fixed; z-index: 100; width: 100%; height: 60px; padding-top: 30px; padding-left: 10px; padding-right: 10px; top: 0; left: 0; background: white; border-bottom: 1px solid #b2b2b2; }
+
+#total_menu { width: 1150px; height: 60px; margin: 0 auto; overflow: hidden; }
+
+.top_login { width: 100%; height: 30px; position: absolute; padding: 0 10px; background: #9fb482; top: 0; left: 0;}
+
+.top_login #login { width: 1150px; height: 30px; position: relative; margin: 0 auto; overflow: hidden; text-align: right;}
+
+.top_login #login a { display: inline-block; padding: 5px; text-decoration: none; color: #dbdbdb;}
+.top_login #login a:hover { color: white;}
+
+#logo { float: left; height: 30px;  padding: 15px 0;}
+#logo img { width: 160px; height: 30px;  display: inline-block;}
+
+#total_menu #title_menu { height: 60px; text-align: right;}
+
+#title_menu #searchPname { margin-top: 20px; padding-left: 10px; font-size: 16px; width: 170px; height: 20px; border-top: hidden; border-left:hidden; border-right: hidden; border-bottom: 2px solid black; outline: none;}
+#title_menu input[type="image"] { float:right; margin-top: 10px; margin-left: 10px; outline: none;}
+
+/* 서브 메뉴  */
+#submenu_nav { width: 100%; height: 50px; position: absolute; display: block; top: 91px; left: 0; 
+	background: white; padding: 5px; border-bottom: 1px solid rgb(237, 237, 237);}
+
+#submenu_item { width:1150px; height: 50px; position: relative; margin: 0 auto; }
+#submenu_item a { position: relative; display: inline-block ;  height: 20px; margin: 15px 10px; 
+	font-size: 15px; font-weight: bold; color: #424242; text-decoration: none; }
+#submenu_item a:hover { border-bottom: 2px solid #00cc00; }
+
+/* 세부 메뉴  */
+#detail_menu { display: inline-block; width: 85px;}
+#detail_menu #detail_title { text-align: center;  width: 65px;}
+.detail_menu1:hover { background: #ffe1e9;}
+.detail_menu2:hover { background: #fff3d2;}
+
+.detail_menu1 #detail_bar { background: #ffe1e9;} 
+.detail_menu2 #detail_bar { background: #fff3d2;} 
+
+#detail_menu #detail_bar { top: 45px; width: 85px; position: absolute; display: none;}
+#detail_menu:hover #detail_bar { display: block;}
+#detail_menu:hover #detail_bar a{ margin-right: 0; padding-left: 3px; border-left: 3px solid rgb(0, 204, 0, 0); border-bottom: none;}
+#detail_menu:hover #detail_bar a:hover{  border-left: 3px solid rgb(0, 204, 0, 1);}
+
+/* 풋터 설정 */
+footer { font-size: 0.7em; text-align: center; padding: 30px 0; background: #9fb482; color: white;}
+footer ul { list-style: none; margin:0; padding: 0;}

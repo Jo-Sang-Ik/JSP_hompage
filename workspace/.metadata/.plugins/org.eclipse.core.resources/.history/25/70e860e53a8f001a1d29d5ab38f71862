@@ -1,0 +1,289 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@page import="com.plantshop.product.*"%>    
+<%@ page import="java.sql.*, java.util.*, java.text.*" %>    
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>언제나 함께 썬플라워</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+
+<link href="./css/product_main.css" rel="stylesheet">
+<link href="./css/product_list.css" rel="stylesheet">
+</head>
+<body>
+<% 
+request.setCharacterEncoding("utf-8"); 
+
+//검색 처리 부분
+String condition = ""; // 조건식의 초기값은 공백값으로 설정
+String pname = "";
+String category = "";
+
+// 1. pname(상품이름)으로 검색
+if(request.getParameter("pname") != null && !request.getParameter("pname").equals("")) {
+	pname = request.getParameter("pname");
+	condition = " where pname like '%" + pname + "%' order by id";
+}
+
+// 2. category(상품분류)로 검색
+if(request.getParameter("category") != null && !request.getParameter("category").equals("")) {
+	category = request.getParameter("category");
+	condition = " where category='" + category + "' order by id"; // 카테고리는 문자이고 정해저 있어서 =과 홀따옴표를 사용
+}
+
+String pageNum = request.getParameter("pageNum"); // 넘어오는 페이지 번호 // 넘어오다 빠질 수 있으므로 int로 받지않음.
+
+if(pageNum == null) { // 처음페이지를 열었을 때 아무페이지도 없을 때를 위해 작성.
+	pageNum = "1"; // 처음 페이지
+}
+%>
+<div id="container">        
+	<%@ include file="../module/top.jsp" %>
+	<section>
+		<div id="content">
+		   	<h2>상품 목록</h2>
+		   	<div><input type="button" value="사용자 정보" onclick="location='product_write.jsp?pageNum=<%=pageNum %>&category=<%=category %>&pname=<%=pname %>'"></div>
+				<form name="search_form" action="product_list.jsp" method="post">
+					<table class="search_table">
+						<tr class="first_row">
+							<td width="50%" class="first_col">
+								<input type="text" name="pname" placeholder="상품명 검색"> <input type="submit" value="검색">
+							</td>
+							<td width="50%" class="second_col">
+								<input id="item_upload" type="button" value="상 품 등 록" onclick="location='product_write.jsp?pageNum=<%=pageNum %>&category=<%=category %>&pname=<%=pname %>'">
+							</td>
+						</tr>
+						<tr class="second_row">
+							<td colspan="2">
+								<a href="product_list.jsp"><div class="category">전체</div></a>&nbsp;
+								<a href="product_list.jsp?category=11"><div class="category">공기정화 식물</div></a>&nbsp;
+								<a href="product_list.jsp?category=22"><div class="category">인테리어 식물</div></a>&nbsp;
+								<a href="product_list.jsp?category=331"><div class="category">꽃다발</div></a>&nbsp;
+								<a href="product_list.jsp?category=332"><div class="category">꽃바구니</div></a><br>
+								<a href="product_list.jsp?category=333"><div class="category">꽃상자</div></a>&nbsp;
+								<a href="product_list.jsp?category=441"><div class="category">화병</div></a>&nbsp;
+								<a href="product_list.jsp?category=442"><div class="category">꽃가위</div></a>&nbsp;
+								<a href="product_list.jsp?category=443"><div class="category">굿즈</div></a>&nbsp;
+							</td>
+						</tr>
+					</table>
+				</form>
+			<%
+			//페이징 처리 부분
+			//페이지 - 한 화면, 로우 - 상품의 수
+			int pageSize = 10; // 화면에서 표시할 상품의 갯수
+			
+			int currentPage = Integer.parseInt(pageNum); // 현재 페이지 번호
+			int startRow = (currentPage - 1) * pageSize + 1; // // 현재 페이지에서 보여줄 첫번째 글 [ex. (3 - 1) * 3 + 1 = 7 ]
+			int endRow = currentPage * pageSize; // 3 * 3 = 9 // 이게 맞지.
+			int totalRow = 0; // 전체 글 수
+			
+			int id = 0;
+			NumberFormat nf = NumberFormat.getInstance();
+			String price_nf = null; // 포맷 설정한 정가 ex) 45,000
+			String downprice_nf = null; // 포맷 설정한 판매가 ex) 45,000
+			String stock_nf = null; // 포맷 설정한 재고량 ex) 1,111 // 1000개 이상 상품
+			String category_str = null; // 상품분류가 11 -> "가구"
+			
+			Connection conn = null;
+			Statement stmt = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = null;
+			
+			// 관리자 확인
+			String pwd = request.getParameter("pwd");
+			String db_pwd = "";
+			
+			// 페이징 처리 - 전체 게시물 갯수 받기
+			ProductDBBean dbPro = ProductDBBean.getInstance();
+			totalRow = dbPro.getProductCountCondition(condition);
+			
+			// 페이징 처리 - 몇 번부터 몇 개
+			List<ProductDataBean> productList = dbPro.getProductListCondition(condition, startRow, pageSize);
+			
+			if(productList.isEmpty()) {
+				out.println("<div align='center'><font color='red'><h4>상품이 없습니다.</h4></font></div>");
+			} else {
+				out.print("<table id='product_table'><tr>");
+				out.print("<th width='4%'>번호</th>");
+				out.print("<th width='10%'>상품분류</th>");
+				out.print("<th width='21%'>상품명</th>");
+				out.print("<th width='7%'>상품번호</th>");
+				out.print("<th width='9%'>제조사</th>");
+				out.print("<th width='9%'>판매시작일</th>");
+				out.print("<th width='8%'>정가</th>");
+				out.print("<th width='8%'>판매가</th>");
+				out.print("<th width='6%'>재고량</th>");
+				out.print("<th width='7%'>판매수량</th>");
+				out.print("<th width='7%'>판매여부</th>");
+				out.print("<th width='5%'>추천</th>");
+				out.print("</tr>");
+					
+				for(int i=0; i<productList.size(); i++) {
+					ProductDataBean product = productList.get(i);
+					out.print("<tr>");
+					out.print("<td class='center'>" + (startRow+i) + "</td>"); // 빙고 - startRow로 번호 계산
+					// 상품분류가 11이라면 "가구"로 출력
+					switch(product.getCategory()) { // Array 구체화를 해주지않았기 때문에 object타입으로 인식
+						case "11": 
+							category_str = "공기정화 식물";
+							break;
+						case "22":
+							category_str = "인테리어 식물";
+							break;
+						case "331":
+							category_str = "꽃다발";
+							break;
+						case "332":
+							category_str = "꽃바구니";
+							break;
+						case "333":
+							category_str = "꽃상자";
+							break;
+						case "441":
+							category_str = "화병";
+							break;
+						case "442":
+							category_str = "꽃가위";
+							break;
+						case "443":
+							category_str = "굿즈";
+							break;
+						default:
+							category_str = "기타";
+							break;
+					}
+					out.print("<td class='center'>" + category_str + "</td>");
+						
+					// 상품명을 클릭했을 때 상품 상세보기로 이동 - category, pname, 페이지 번호를 가지고 이동
+					out.print("<td class='left'><a href='product_update.jsp?");
+					out.print("pageNum=" + pageNum + "&id=" + product.getId() + "&category=" + category + "&pname=" + pname + "'>");
+					out.print(product.getPname() + "</a></td>");
+					
+					out.print("<td class='center'>" + product.getId() + "</td>");
+					out.print("<td class='center'>" + product.getSname() + "</td>");
+					out.print("<td class='center'>" + product.getInputdate() + "</td>");
+					
+					// 정가의 포맷형식을 지정
+					price_nf = nf.format(product.getPrice());
+					out.print("<td class='right'>" + price_nf  + "</td>");
+					
+					// 판매가(할인가)의 포맷형식을 지정
+					downprice_nf = nf.format(product.getDownprice());
+					out.print("<td class='right'>" + downprice_nf  + "</td>");
+					
+					// 재고량의 포맷형식을 지정
+					stock_nf = nf.format(product.getStock());
+					out.print("<td class='right'>" + stock_nf + "</td>");
+					
+					// 판매수량
+					out.print("<td class='right'>" + product.getSalecount() + "</td>");
+					// 판매 여부
+					if(product.getSelling().equals("y")) {
+						out.print("<td class='center'><font color='blue'>" + product.getSelling() + "</font></td>");
+					} else {
+						out.print("<td class='center'><font color='red'>" + product.getSelling() + "</font></td>");
+					}
+					
+					// 추천 상품
+					if(product.getMditem().equals("y")){
+						out.print("<td class='center'><font color='blue'>" + product.getMditem() + "</font></td>");
+					} else {
+						out.print("<td class='center'><font color='red'>" + product.getMditem() + "</font></td>");
+					}
+					
+					out.print("</tr>");
+				} // end_for
+			} // end_else
+			out.print("</table>");
+			out.print("<div align='right'>전체 상품 수 : " + totalRow + "</div>");
+			
+			// *** 페이징 처리 ***
+			out.println("<div id='paging'>");
+			if(totalRow > 0) {
+				// int pageCount = (totalRow - 1) / pageSize + 1;           // true : false
+				int totalPage = totalRow / pageSize + (totalRow % pageSize == 0 ? 0 : 1); // 전체 페이지 수 // 직관적으로 나머지가 생기면 1을 더해주는 참 좋다~
+				int startPage = 1; // 시작페이지
+				
+				int count = 10; // 표시할 페이지의 수. ex) 3이라면[1][2][3], 
+				
+				if(currentPage % count != 0) { // 페이지를 보여줄 갯수
+					startPage = (int)(currentPage/count)*count + 1;
+				} else {	
+					startPage = (int)((currentPage/count)-1)*count + 1;
+				}
+				
+				int endPage = startPage + count - 1; // 1, 4 // 1 + 3 - 1 = 3 // 4 + 3 - 1 = 6
+				if(endPage > totalPage) endPage = totalPage;
+				
+				// 1. 이전을 눌렀을 때 1페이지씩 이전으로 이동
+// 				if(currentPage > 1) {
+// 					out.println("<a href='product_list.jsp?pageNum=1&category=" + category + "&pname=" + pname + "'>");
+// 					out.println("<div id='pnum' class='page'>&lt&lt</div></a>");
+					
+					
+// 					out.println("<div id='pnum' class='page'>&lt</div></a>");
+// 				} else {
+// 					out.println("<div id='pnum' class='page'>&lt&lt</div>");
+// 					out.println("<div id='pnum' class='page'>&lt</div>");
+// 				}
+				
+				// 2. 이전 페이지 유무 확인 // 이전을 눌렀을 때 count페이지(보여지는 페이지 갯수) 만큼 이전으로 이동
+				if(startPage > count) { // 이전을 바꾸고 싶으면 pageNum을 혹은 cuurentPage를 3으로 나눴을때 1이면
+					out.println("<a href='product_list.jsp?pageNum=1&category=" + category + "&pname=" + pname + "'>");
+					out.println("<div id='pnum' class='page'>&lt&lt</div></a>");
+					
+					out.println("<a href='product_list.jsp?pageNum=" + (startPage-count) + "&category=" + category + "&pname=" + pname + "'>");
+					out.println("<div id='pnum' class='page'>&lt</div></a>");
+				} else {
+					out.println("<div id='pnum' class='page'>&lt&lt</div>");
+					out.println("<div id='pnum' class='page'>&lt</div>");
+				}
+				
+				// 페이지 번호 출력
+				for(int i=startPage; i<=endPage; i++) {
+					if(i == currentPage) {
+						out.println("<div id='pnum' class='spnum'>" + i + "</div>");
+					} else {
+						out.print("<a href='product_list.jsp?pageNum=" + i + "&category=" + category + "&pname=" + pname +"'>");
+						out.println("<div id='pnum'>" + i + "</div></a>");
+					}
+				}
+				
+				// 1. 다음을 눌렀을 대 1페이지씩 다음으로 이동
+// 				if(currentPage < totalPage) {
+// 					out.print("<a href='product_list.jsp?pageNum=" + (currentPage+1) + "&category=" + category + "&pname=" + pname);
+// 					out.println("'><div id='pnum' class='page'>&gt;</div></a>");
+					
+// 					out.print("<a href='product_list.jsp?pageNum=" + totalPage + "&category=" + category + "&pname" + pname);
+// 					out.println("'><div id='pnum' class='page'>&gt;&gt;</div></a>");
+// 				} else {
+// 					out.println("<div id='pnum' class='page'>&gt;</div>");
+// 					out.println("<div id='pnum' class='page'>&gt;&gt;</div>");
+// 				}
+				
+				// 다음 페이지 유무
+				// 2. 다음을 눌렀을 때 count페이지만큼 다음으로 이동
+				if(endPage < totalPage) {
+					out.print("<a href='product_list.jsp?pageNum=" + (startPage+count) + "&category=" + category + "&pname=" + pname + "'>");
+					out.println("<div id='pnum' class='page'>&gt;</div></a>");
+					
+					out.print("<a href='product_list.jsp?pageNum=" + totalPage + "&category=" + category + "&pname" + pname);
+					out.println("'><div id='pnum' class='page'>&gt;&gt;</div></a>");
+				} else {
+					out.println("<div id='pnum' class='page'>&gt;</div>");
+					out.println("<div id='pnum' class='page'>&gt;&gt;</div>");
+				} 
+				out.println("&nbsp;<font id='tot_pages' color='blue'>" + currentPage + "/" + totalPage + "</font>");
+			}
+			out.println("</div>");
+			%>
+		</div>
+	</section>
+    <%@ include file="../module/bottom.jsp" %>
+</div>
+</body>
+</html>

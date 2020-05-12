@@ -1,0 +1,28 @@
+section { position: relative; min-height: 100vh; width: 100%; margin-top: 180px; margin-bottom: 50px; overflow: hidden;}
+
+#content { position: relative; width: 1300px; margin: 0 auto; padding: 0 10px;}
+
+#content .search_table { width: 100%; border: hidden; margin-bottom: 20px;  text-align: right;}
+#content .search_table .first_row td { border: hidden; padding-right: 10px;}
+
+#content h2 { margin: 0; text-align: center;}
+#content #item ul { list-style: none; padding: 0; text-align: left;}
+#content #item ul li {width: 300px; height: 350px; display: inline-block; border: 1px solid lightgray; margin-left: 10px; margin-right: 10px; margin-bottom: 20px; position: relative;}
+#content #item ul li div { position: absolute; text-align: center; display: none; top: 250px; width: 300px; height: 100px; line-height: 45px; font-size: 20px; }
+#content #item ul li span { color: orange;}
+#content #item ul li:hover div{ display: block;  background: ghostwhite;  opacity: 0.9;}
+#content #item a { width: 300px; height: 350px; display:block; text-decoration: none; color: black;}
+#content #item img { width: 100%; height: 100%;}	
+
+#content #paging { text-align: center; }
+#content #paging a { text-decoration: none; }
+#content #paging a:visited { color: black;}
+ 	
+#content #pnum { width:40px; height:30px; background:#fff; padding:0; font-size:13px; color:#333;
+	border:0; line-height:30px; border-radius:2px; -moz-border-radius:2px; -webkit-border-radius:2px;
+    text-align:center; display:inline-block;}
+#content #pnum:hover { background: #ddd; }
+#content .spnum { background:#333 !important; color:#fff !important; }
+#content .page { position:relative; height: 32px!important;font-size: 15px !important; background:#fff; border:1px solid #ccc !important; border-radius:2px; }
+#content .page:hover { border:1px solid #333 !important; }
+#content #tot_pages { display: inline-block;width: 50px;}	

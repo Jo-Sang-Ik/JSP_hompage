@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;home/WebContent/plugins/carousel/image&apos; to &apos;images&apos;" description="Rename resource &apos;image&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="WebContent/plugins/carousel/image" name="images" stamp="1580221886300" updateReferences="true"/>
+</session>

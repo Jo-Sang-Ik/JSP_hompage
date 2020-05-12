@@ -1,0 +1,10 @@
+#content_main { width: 800px; margin: 0 auto; padding: 0 20px;}
+#content_main h2 { text-align: center; }
+#content_main table, th, td { border: 1px solid black; border-collapse: collapse;}
+#content_main table { width: 100%; }
+#content_main tr { height: 40px; }
+#content_main th { background: #555; color: white; font-weight: lighter;}
+#content_main th label { display: block; width: 100px;}
+#content_main td { padding-left: 10px;}
+#content_main .end_row { text-align: center; border-left: hidden; border-right: hidden; border-bottom: hidden;}
+#content_main .end_row td { padding-top: 10px;}

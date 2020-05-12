@@ -1,0 +1,22 @@
+#content_main .btns { outline: 0; cursor: pointer; background:  #336600; 
+	color: white; font-size: 15px; border: 2px solid  #336600!important }
+
+#content_main { width: 800px; margin-left: auto; margin-right: auto; margin-bottom: 50px; padding: 0 20px; }
+#content_main #joinform { width: 100%;}
+#content_main #joinform h1 { text-align: left;}
+#content_main #joinform table, th, td { border: 1px solid gray; border-collapse: collapse;  border-bottom:hidden}
+#content_main #joinform table { width: 100%; border-left: hidden; border-right: hidden; }
+#content_main #joinform tr { height: 60px;}
+#content_main #joinform th { text-align: right; padding-right: 15px; font-weight: lighter;}
+#content_main #joinform td { padding: 0 10px; border-left: hidden;}
+#content_main #joinform td input { vertical-align: top; padding: 0 10px; height: 30px; font-size: 15px; border: 1px solid black}
+#content_main #joinform mark { background: none; color: red; display: inline-block;}
+
+#content_main #pwdCheckCircle { display:inline-block; margin-left:5px; background: black; width: 30px; height: 32px; }
+
+#content_main .phone_row { border-bottom: 1px solid black;}
+
+#content_main .end_row { margin-top: 30px; }
+#content_main .end_row input { width: 150px; height: 40px; border-radius: 20px; outline: 0;}
+
+

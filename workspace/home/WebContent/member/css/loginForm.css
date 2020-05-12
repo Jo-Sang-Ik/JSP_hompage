@@ -1,0 +1,18 @@
+.btns { cursor: pointer;}
+
+#content { width: 600px; margin-left: auto; margin-right: auto; margin-bottom: 50px; overflow: hidden; }
+
+#content #loginForm { width: 500px; height: 500px; margin: 50px auto;}
+#content #loginbtn { width: 150px; height: 120px; padding:0; border:0; float: right; background: black; color: white; font-size: 1.5em; }
+#content #loginbtn:hover { background: #008040; transition: all 0.5s; }
+
+#content .searchbtn { width: 150px; height: 40px; border-radius: 30px; }
+
+#content h2 { text-align: left; }
+#content ul { display: inline-block; list-style: none; margin-top: 40px;; padding: 0; }
+#content ul li { display: inline-block; ; text-align: center; margin-bottom: 15px;}
+#content ul .input_zip { float: left; display:inline-block; margin-bottom: 10px; }
+#content ul .input_zip input { width: 300px; height: 50px; margin-bottom: 10px; margin-right: 20px;  padding-left: 10px; font-size: 18px;}
+
+#content ul li input[type="button"] { background: #fafafa; outline: 0; margin-right: 10px; color: #777777; border: 1px solid #e7e7e7}
+#content ul li input[type="button"]:hover { transition: all 0.5s; background: white; color: #222222; border: 1px solid gray;}

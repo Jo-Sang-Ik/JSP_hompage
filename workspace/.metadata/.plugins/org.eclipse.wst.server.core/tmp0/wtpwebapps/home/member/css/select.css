@@ -1,0 +1,17 @@
+section { margin-top: 180px;}
+
+#content { width: 1000px; margin: 0 auto; margin-bottom: 100px; }
+.btns { outline: 0; cursor: pointer; background: #336600; color: white; font-size: 15px; border: 2px solid #336600; border-radius: 20px; }
+
+#content .move_page a { display: inline-block; padding: 10px; background: #999; color: white; width: 150px;
+	text-align: center; text-decoration: none;}
+#content #current_page { background: black;}
+
+#content h2 { text-align: center;}
+#content table, th, td { border: 1px solid gray; border-collapse: collapse;}
+#content table { width: 100%; }
+#content tr { height: 50px;}
+#content th { background: #555; color: white; font-weight: lighter; }
+#content td { padding-left: 20px; border-left: hidden; font-weight: bold;}
+#content .end_row { text-align: center; padding-top: 30px; border-left: hidden; border-right: hidden; border-bottom: hidden}
+#content .end_row input[type="button"] { width: 200px; height: 40px; margin-right: 10px;}	

@@ -1,0 +1,21 @@
+#content {width: 700px; margin: 0 auto; margin-top: 50px; border: 1px solid #ddd; padding: 20px;}
+#content h3 { text-align: center; }
+#content table { width: 100%}
+#content table, th, td { border: 1px solid gray; border-collapse: collapse;}
+#content tr { height: 35px;}
+#content th { background: #555; color: white; font-weight: lighter;}
+#content td { padding-left: 7px;}
+
+#content a { text-decoration: none; color: black; }
+#content img { vertical-align: top;}
+#content .end_row { text-align: center; border-left: hidden; border-right: hidden; border-bottom: hidden;}
+#content .end_row td { padding: 0;  padding-top: 10px;}
+#content input[type="text"] { font-size: 16px;}
+#content input[type="button"], input[type="reset"] {cursor: pointer; width: 90px; border: 1px solid black; background: white; color: black; font-size: 17px}
+
+#content .border_right { border-right: none;}
+#content .border_left { border-left: none;}
+#content .center { padding: 5px; text-align: center;}
+
+#content #move { cursor: pointer; text-align: center; margin-top: 10px; }
+#content #move a { width: 120px; display: inline-block; text-decoration: none; padding: 15px; background: black; color: white; }

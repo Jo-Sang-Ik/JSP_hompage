@@ -1,0 +1,60 @@
+body { margin: 0;}
+#container { width: 100%;}
+.imgbtn { cursor: pointer;}
+
+header { position: fixed; z-index: 10; width: 100%; height: 60px; padding-top: 30px; padding-left: 10px; padding-right: 10px; top: 0; left: 0; background: white; border-bottom: 1px solid rgb(237, 237, 237); }
+
+#total_menu { position: relaitve; width: 60%; height: 60px; margin: 0 auto; overflow: hidden; }
+
+.top_login { width: 100%; height: 30px; position: absolute; padding: 0 10px; background: darkslategray; top: 0; left: 0;}
+
+.top_login #login { width: 60%; height: 30px; margin: 0 auto; overflow: hidden; text-align: right;}
+
+.top_login #login a { display: inline-block; padding: 5px; text-decoration: none; color: lightgray;}
+.top_login #login a:hover { color: white;}
+
+
+#logo { float: left; height: 30px;  padding: 15px 0;}
+#logo img { width: 160px; height: 30px;  display: inline-block;}
+
+#total_menu #title_menu { height: 60px; text-align: right;}
+#total_menu #title_menu a { display: inline-block; height: 30px; padding: 15px 10px;  font-size: 20px; font-weight: bold; color: #424242; text-decoration: none;}
+#total_menu #title_menu a:hover { color: #35c5f0}
+
+#submenu_nav { width: 100%; height: 50px; position: absolute; display: none; top: 91px; left: 0; background: white; padding: 5px; border-bottom: 1px solid rgb(237, 237, 237);}
+
+#submenu_item { width:60%; height: 50px; margin: 0 auto; overflow: hidden;  }
+#submenu_item a { line-height: 50px; width: 50px; height: 30px; padding: 15px 10px;  font-size: 15px; font-weight: bold; color: #424242; text-decoration: none; }
+#submenu_item a:hover { color: #35c5f0}
+
+section { width: 100%; margin-top: 120px; margin-bottom: 50px; overflow: hidden; }
+
+#content1 { width: 1200px; position: relative; margin: 0 auto; padding: 0 10px;}
+#content1 { text-align: center;}
+#content1 table { width: 100%; }
+#content1 table, th, td { border: 1px solid black; border-collapse: collapse;}
+#content1 tr { height: 30px;}
+#content1 th { background: lightgray;}
+#content1 .left { text-align: left; padding-left: 10px;}
+#content1 .center { text-align: center;}
+#content1 .right { text-align: right; padding-right: 10px;}
+
+#content1 .search_table { border: hidden; margin-bottom: 30px;}
+#content1 .search_table .first_row td { border: hidden; text-align: right; padding-right: 10px;}
+#content1 .search_table .first_row .first_col { text-align: left; padding-left: 10px;}
+#content1 .search_table .first_row .second_col { text-align: right; padding-right: 10px;}
+#content1 .search_table .second_row td { text-align: center; border:hidden;}
+#content1 .search_table .second_row a { text-decoration: none;}
+#content1 .search_table input[type="submit"] { width: 60px;}
+
+#content1 .category { display: inline-block; margin-top: 10px; width: 80px; height: 30px; line-height: 30px; border: 1px solid #ccc; background: #eee;
+	border-radius: 5px; }
+#content1 #paging { text-align: center; }
+#content1 #paging a { text-decoration: none; }
+#content1 #paging a:visited { color: black;}
+#content1 #pnum { display: inline-block; width: 25px; height: 25px; background: ivory; padding: 3px; border: 1px solid #ccc; border-radius: 12.5px;}
+#content1 .spnum { background: pink!important;}
+
+
+footer { width: 100%; font-size: 0.7em; text-align: center; padding: 30px 0; background: gray; color: white;}
+footer ul { list-style: none; margin:0; padding: 0;}

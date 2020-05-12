@@ -1,0 +1,11 @@
+#content { width: 80%; height: 100%; margin-left: auto; margin-right: auto; margin-bottom: 50px;overflow: hidden; }
+	
+#selectAll { width: 800px; height: 700px; margin: 0 auto;}
+#selectAll h3 { text-align: center;}
+#selectAll table, th, td { border: 1px solid gray; border-collapse: collapse;}
+#selectAll table { width: 100%; border-left: hidden; border-right: hidden;}
+#selectAll tr { height: 50px;}
+#selectAll td { text-align: center;}
+#selectAll #btn {text-align: right; margin-top: 30px;}
+#selectAll #btn input[type="button"] { margin-bottom: 20px; width: 150px; height: 30px;
+	border: none; background: black; color: white; font-weight: normal; cursor: pointer;}

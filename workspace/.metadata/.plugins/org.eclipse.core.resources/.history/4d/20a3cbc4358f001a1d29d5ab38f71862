@@ -1,0 +1,236 @@
+package com.plantshop.user;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
+public class UserDBBean {
+	Connection conn = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	String sql = null;
+	
+	private UserDBBean() {}
+	
+	private static UserDBBean instance = new UserDBBean();
+	
+	public static UserDBBean getInstance() {
+		return instance;
+	}
+	
+	private Connection getConnection() throws Exception {
+		Context context = new InitialContext();
+		DataSource ds = (DataSource)context.lookup("java:comp/env/jdbc/plantshop");
+		return ds.getConnection();
+	}
+	
+	private void close(Connection conn, PreparedStatement st) {
+		if(st != null) try {st.close();} catch(Exception e) { e.printStackTrace();}
+		if(conn != null) try {conn.close();} catch(Exception e) { e.printStackTrace();}
+	}
+	
+	private void close(Connection conn, PreparedStatement st, ResultSet rs) {
+		if(rs != null) try {rs.close();} catch(Exception e) { e.printStackTrace();}
+		if(st != null) try {st.close();} catch(Exception e) { e.printStackTrace();}
+		if(conn != null) try {conn.close();} catch(Exception e) { e.printStackTrace();}
+	}
+	
+//	**************************************************************
+	
+	// 로그인 처리 - 회원가입한 유저인지 확인
+	public int userCheck(String userid, String password) {
+		int check = -1;
+
+		try {
+			conn = this.getConnection();
+			sql = "select password from member2 where userid=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userid);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) { // 아이디가 있을 때 
+				if(password.equals(rs.getString("password"))) { // 비밀번호가 맞을 때
+					check = 1;
+				} else { // 비밀번호가 맞지 않을 때
+					check = 0;
+				}
+			} else { // 아이디가 없을 때
+				check = -1;
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("--> userCheck() 메소드  오류");
+		} finally {
+			this.close(conn, pstmt, rs);
+		}
+		return check;
+	}
+	
+	// 유저 정보 얻기
+	public UserDataBean getUserInfo(String userid) {
+		UserDataBean user = null;
+		try {
+			conn = this.getConnection();
+			sql = "select * from member2 where userid=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userid);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				user = new UserDataBean();
+				user.setUserid(rs.getString("userid"));
+				user.setUsername(rs.getString("username"));
+				user.setPassword(rs.getString("password"));
+				user.setEmail(rs.getString("email"));
+				user.setZipcode(rs.getString("zipcode"));
+				user.setAddress1(rs.getString("address1"));
+				user.setAddress2(rs.getString("address2"));
+				user.setPhone(rs.getString("phone"));
+				user.setRegdate(rs.getString("regdate"));
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("--> getUserName() 메소드  오류");
+		} finally {
+			this.close(conn, pstmt, rs);
+		}
+		
+		return user;
+	}
+	
+	// 유저 회원 가입
+	public int joinProc(UserDataBean article) {
+		int check = -1;
+		try {
+			conn = this.getConnection();
+			sql = "insert into member2 values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, article.getUserid());
+			pstmt.setString(2, article.getUsername());
+			pstmt.setString(3, article.getPassword());
+			pstmt.setString(4, article.getEmail());
+			pstmt.setString(5, article.getZipcode());
+			pstmt.setString(6, article.getAddress1());
+			pstmt.setString(7, article.getAddress2());
+			pstmt.setString(8, article.getPhone());
+			pstmt.setString(9, article.getRegdate());
+			check = pstmt.executeUpdate();
+					
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("--> joinProc() 메소드 오류");
+		} finally {
+			this.close(conn, pstmt);
+		}
+		return check;
+	}
+	
+	// 유저 회원 탈퇴
+	public int userDelete(String userid) {
+		int check = -1;
+		try {
+			conn = this.getConnection();
+			sql = "delete from member2 where userid = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userid);
+			check = pstmt.executeUpdate();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("--> userDelete() 메소드 오류");
+		} finally {
+			this.close(conn, pstmt);
+		}
+		return check;
+	}
+	
+	// 유저 수정
+	public int userUpdate(UserDataBean article) {
+		int check = -1;
+		try {
+			conn = this.getConnection();
+			sql = "update member2 set username=?, password=?, email=?, zipcode=?, " 
+					+ "address1=?, address2=?, phone=? where userid=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, article.getUsername());
+			pstmt.setString(2, article.getPassword());
+			pstmt.setString(3, article.getEmail());
+			pstmt.setString(4, article.getZipcode());
+			pstmt.setString(5, article.getAddress1());
+			pstmt.setString(6, article.getAddress2());
+			pstmt.setString(7, article.getPhone());
+			pstmt.setString(8, article.getUserid());
+			check = pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("--> userUpdate() 메소드 오류");
+		} finally {
+			this.close(conn, pstmt, rs);
+		}
+		
+		return check;
+	}
+	
+	// 관리자 - 유저의 모든 정보 확인
+	public List<UserDataBean> getUserList() {
+		List<UserDataBean> userList = new ArrayList<UserDataBean>();
+		UserDataBean user = null;
+		try {
+			conn = this.getConnection();
+			sql = "select * from member2 order by userid";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				user = new UserDataBean();
+				user.setUserid(rs.getString("userid"));
+				user.setUsername(rs.getString("username"));
+				user.setAddress1(rs.getString("address1"));
+				user.setAddress2(rs.getString("address2"));
+				user.setEmail(rs.getString("email"));
+				user.setPhone(rs.getString("phone"));
+				
+				
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			this.close(conn, pstmt, rs); 
+		}
+		
+		return userList
+	}
+	
+// *************************************************************************************
+	// 아이디 중복 체크
+	public int useridCheck(String userid) {
+		int check = -1;
+		try {
+			conn = this.getConnection();
+			sql = "select count(*) as count from member2 where userid=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userid);
+			
+			if(rs.next()) {
+				if(rs.getInt("count") > 0) {
+					check = 1;
+				} 
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			this.close(conn, pstmt, rs);
+		}
+		
+		return check;
+	}
+	
+}

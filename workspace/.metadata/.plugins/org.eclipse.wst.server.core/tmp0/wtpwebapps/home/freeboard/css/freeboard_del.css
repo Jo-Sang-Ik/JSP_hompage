@@ -1,0 +1,8 @@
+#content { width: 400px; margin: 200px auto;}
+#content h2 { text-align: center;}
+#content table { width: 100%;}
+#content table, th, td { border: 1px solid black; border-collapse: collapse;}
+#content tr { height: 40px;}
+#content th { background: lightgray;}
+#content td { padding-left: 10px;}
+#content .end_row td { text-align: right; padding-top: 10px; padding-right: 10px; border-left:hidden; border-right:hidden; border-bottom:hidden;}

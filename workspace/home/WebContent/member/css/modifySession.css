@@ -1,0 +1,17 @@
+section #content { width: 80%; height: 100%; margin-left: auto; margin-right: auto; margin-bottom: 50px; background-size: cover; overflow: hidden; }
+.btns { outline: 0; cursor: pointer; background: #336600; color: white; font-size: 15px; border: 2px solid #336600;  }
+
+#modifyform { width: 800px; height: 700px; margin: 50px auto;}
+#modifyform h1 {  text-align: left;}
+#modifyform table, th, td { border: 1px solid gray; border-collapse: collapse; border-bottom: hidden}
+#modifyform table { width: 100%; border-left: hidden; border-right: hidden; border-bottom:hidden;}
+#modifyform tr { height: 60px;}
+#modifyform td { padding: 0 10px; border-left: hidden;}
+#modifyform td input {  vertical-align: top; padding: 0 10px; height: 30px; font-size: 15px; border: 1px solid}
+#modifyform .end_row th { padding-top: 30px;}
+#modifyform .end_row input[type="button"] { width: 150px; height: 40px; border-radius: 20px;}	
+
+#modifyform #pwdCheckCircle { display:inline-block; margin-left:5px; background: black; width: 30px; height: 32px; }
+#modifyform .phone_row { border-bottom: 1px solid black;}
+
+#joinform mark { background: none; color: red; display: inline-block;}

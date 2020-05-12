@@ -1,0 +1,10 @@
+#content { width: 80%; margin: 0 auto; background-size: cover; overflow: hidden; }
+
+#content #adminform { width: 800px; height: 600px; margin: 0 auto; padding-top: 100px;}
+#content #adminform h3 { text-align: center;}
+#content #adminform table, th, td { border: 1px solid gray; border-collapse: collapse;}
+#content #adminform table { width: 100%; border-left: hidden; border-right: hidden;}
+#content #adminform tr { height: 100px;}
+#content #adminform td { border-left: hidden;}
+#content #adminform .end_row { text-align: center; border-bottom: hidden;}
+#content #adminform .end_row input[type="button"], input[type="submit"] { width: 200px; height: 30px}

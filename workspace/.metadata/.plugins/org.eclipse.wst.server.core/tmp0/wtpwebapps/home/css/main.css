@@ -1,0 +1,110 @@
+section { position: relative; width: 100%; margin-top: 150px;  overflow: hidden;}
+
+#title1, #title2, #title3 { width: 1350px; margin: 0 auto; padding: 20px 10px; font-size: 1.5em; font-weight: 500;}
+
+#title1 a { text-decoration: none; color: black;  border-bottom: 3px solid darkseagreen;}
+#title2 a { text-decoration: none; color: black;  border-bottom: 3px solid lightpink;}
+#title3 a { text-decoration: none; color: black;  border-bottom: 3px solid orange;}
+
+#article1 { width:100%; height: 350px; position: relative; overflow: hidden;}
+	/* 메인 배너  */
+	#banner { position: relative; width: 100%; }
+	#banner_frame { width: 100%}
+	#banner_main { position:relative; width: 1300px;  margin:0 auto; overflow:hidden; }
+	#banner_main ul { position:absolute; list-style: none; margin:0; padding:0; top:0; left:0; overflow:hidden; }
+	#banner_main ul li { font-size:14px; color:#fff; }
+	.banner_item { display: inline-block; width: 100%; margin: 0 auto;}
+	.banner_item img { display: inline-block; width: 100%; height: 350px; background: #eee; color:red; }
+	
+	.banner_controls { position: absolute; width: 100%; }
+	.banner_controls .banner_prev { position: absolute; cursor: pointer; top: -220px; left: 0; transition: opacity 0.5s; opacity: 0;}
+	.banner_controls .banner_next { position: absolute; cursor: pointer; top: -220px; right: 0; transition: opacity 0.5s; opacity: 0;}
+	#article1:hover .banner_prev { display: block; opacity: 0.9;}
+	#article1:hover .banner_next { display: block; opacity: 0.9;}
+	
+	.banner_paging { position: absolute; width: 100%; text-align: center; top: -30px;}
+	.banner_paging .banner_page { display: inline-block; cursor: pointer; background: #d1d4d4; width: 15px; height: 15px; margin: 0 10px; border-radius: 50%;}
+	.banner_paging .banner_page:hover { background: #4caf50; opacity: 0.5;}
+	.banner_paging .banner_page.on { background: #4caf50;}
+
+#article2 { width:100%; height: 550px; padding: 30px 0; position: relative; overflow: hidden;  border-top: 1px solid lightgray; border-bottom: 1px solid lightgray;}
+	/* 상품 배너 */
+	#popular_product { position: relative; width: 100%; }
+	#popular_product_frame { width: }
+	#popular_product_touchslider { position:relative; width: 1400px;  margin:0 auto; overflow:hidden; }
+	#popular_product_touchslider ul { position:absolute; list-style: none; margin:0; padding:0; top:0; left:0; overflow:hidden; }
+	#popular_product_touchslider ul li { font-size:14px; color:#fff; }
+	.popular_product_item { display: inline-block; width: 1400px; margin: 0 auto;}
+	.popular_product_item div { position: relative; display: inline-block; width: 300px; height: 350px; margin: 20px; background: #eee; color:red; outline: 1px solid #dddd;}
+	.popular_product_item div img { width: 100%; height: 100%;}
+	
+	.popular_product_item a { text-decoration: none;}
+	.popular_product_item span { position: absolute; top: 0; left: 0; display: none; width: 300px; height: 350px; opacity: 1;
+		text-align:center; line-height: 350px; color: white; font-size: 22px; }
+	.popular_product_item div:hover span{ display: inline; background: #71da71; }
+	
+	.popular_product_controls { position: absolute; width: 100%; }
+	.popular_product_controls .popular_product_prev { position: absolute; cursor: pointer; top: -250px; left: 0; transition: opacity 0.5s; opacity: 0;}
+	.popular_product_controls .popular_product_next { position: absolute; cursor: pointer; top: -250px; right: 0; transition: opacity 0.5s; opacity: 0;}
+	#article2:hover .popular_product_prev { display: block; opacity: 0.9;}
+	#article2:hover .popular_product_next { display: block; opacity: 0.9;}
+	
+	.popular_product_paging { text-align: center; margin-top: 30px;}
+	.popular_product_paging .popular_product_page { display: inline-block; cursor: pointer; background: #d1d4d4; width: 15px; height: 15px; margin: 0 10px; border-radius: 50%;}
+	.popular_product_paging .popular_product_page:hover { background: #4caf50; opacity: 0.5;}
+	.popular_product_paging .popular_product_page.on { background: #4caf50;}
+
+#article3 { width:100%; height: 550px; padding: 30px 0; position: relative; overflow: hidden; }
+/* 상품 배너2  */
+	#new_product { position: relative; width: 100%; }
+	#new_product_frame { width: }
+	#new_product_touchslider { position:relative; width: 1400px;  margin:0 auto; overflow:hidden; }
+	#new_product_touchslider ul { position:absolute; list-style: none; margin:0; padding:0; top:0; left:0; overflow:hidden; }
+	#new_product_touchslider ul li { font-size:14px; color:#fff; }
+	.new_product_item { display: inline-block; width: 1400px; margin: 0 auto;}
+	.new_product_item div { position: relative; display: inline-block; width: 300px; height: 350px; margin: 20px; background: #eee; color:red; outline: 1px solid #dddd;}
+	.new_product_item div img { width: 100%; height: 100%}
+	
+	.new_product_item a { text-decoration: none;}
+	.new_product_item span { position: absolute; top: 0; left: 0; display: none; width: 300px; height: 350px; opacity: 1;
+			text-align:center; line-height: 350px; color: white; font-size: 22px;}
+	.new_product_item div:hover span{ display: inline;  background: #ffcce6;}
+	
+	.new_product_controls { position: absolute; width: 100%; }
+	.new_product_controls .new_product_prev { position: absolute; cursor: pointer; top: -250px; left: 0; transition: opacity 0.5s; opacity: 0;}
+	.new_product_controls .new_product_next { position: absolute; cursor: pointer; top: -250px; right: 0; transition: opacity 0.5s; opacity: 0;}
+	#article3:hover .new_product_prev { display: block; opacity: 0.9;}
+	#article3:hover .new_product_next { display: block; opacity: 0.9;}
+	
+	.new_product_paging { text-align: center; margin-top: 30px;}
+	.new_product_paging .new_product_page { display: inline-block; cursor: pointer; background: #d1d4d4; width: 15px; height: 15px; margin: 0 10px; border-radius: 50%;}
+	.new_product_paging .new_product_page:hover { background: pink; opacity: 0.5;}
+	.new_product_paging .new_product_page.on { background: pink;}
+	
+#article4 { width:100%; height: 550px; padding: 30px 0; position: relative; overflow: hidden; border-top: 1px solid lightgray; border-bottom: 1px solid lightgray;}
+/* 상품 배너3  */
+	#prop_product { position: relative; width: 100%; }
+	#prop_product_frame { width: }
+	#prop_product_touchslider { position:relative; width: 1400px;  margin:0 auto; overflow:hidden; }
+	#prop_product_touchslider ul { position:absolute; list-style: none; margin:0; padding:0; top:0; left:0; overflow:hidden; }
+	#prop_product_touchslider ul li { font-size:14px; color:#fff; }
+	.prop_product_item { display: inline-block; width: 1400px; margin: 0 auto;}
+	.prop_product_item div { position: relative; display: inline-block; width: 300px; height: 350px; margin: 20px; background: #eee; color:red; outline: 1px solid #dddd;}
+	.prop_product_item div img { width: 100%; height: 100%}
+	
+	.prop_product_item a { text-decoration: none;}
+	.prop_product_item span { position: absolute; top: 0; left: 0; display: none; width: 300px; height: 350px; opacity: 1;
+			text-align:center; line-height: 350px; color: white; font-size: 22px;}
+	.prop_product_item div:hover span{ display: inline;  background: orange;}
+	
+	.prop_product_controls { position: absolute; width: 100%; }
+	.prop_product_controls .prop_product_prev { position: absolute; cursor: pointer; top: -250px; left: 0; transition: opacity 0.5s; opacity: 0;}
+	.prop_product_controls .prop_product_next { position: absolute; cursor: pointer; top: -250px; right: 0; transition: opacity 0.5s; opacity: 0;}
+	#article4:hover .prop_product_prev { display: block; opacity: 0.9;}
+	#article4:hover .prop_product_next { display: block; opacity: 0.9;}
+	
+	.prop_product_paging { text-align: center; margin-top: 30px;}
+	.prop_product_paging .prop_product_page { display: inline-block; cursor: pointer; background: #d1d4d4; width: 15px; height: 15px; margin: 0 10px; border-radius: 50%;}
+	.prop_product_paging .prop_product_page:hover { background: orange; opacity: 0.5;}
+	.prop_product_paging .prop_product_page.on { background: orange;}
+	

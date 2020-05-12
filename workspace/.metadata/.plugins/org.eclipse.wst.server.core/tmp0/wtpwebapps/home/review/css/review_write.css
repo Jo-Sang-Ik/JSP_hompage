@@ -1,0 +1,9 @@
+#container { width: 600px; margin: 50px auto; }
+h2 { text-align: center;}
+table { width: 100%;}
+table, th, td { border: 1px solid black; border-collapse: collapse;}
+tr { height: 40px; }
+td { padding-left: 10px;}
+.content_row { height: 300px; }
+.end_row { text-align: center; border-left: hidden; border-right: hidden; border-bottom: hidden;}
+.end_row td { padding-top: 20px; }

@@ -1,0 +1,22 @@
+#content .btns  { outline: 0; cursor: pointer; background:  #336600; 
+	color: white; font-size: 15px; border: 2px solid  #336600!important; }
+
+#content { width: 800px; margin: 0 auto; margin-bottom: 50px; padding: 0 20px;}
+#content #modifyform { width: 100%; padding: 5px;}
+#content #modifyform h1 {  text-align: left;}
+#content #modifyform #first_row input { background: gray; color: white;}
+#content #modifyform table, th, td { border: 1px solid gray; border-collapse: collapse; border-bottom: hidden}
+#content #modifyform table { width: 100%; border-left: hidden; border-right: hidden; border-bottom:hidden;}
+#content #modifyform tr { height: 60px;}
+#content #modifyform th { text-align: right; padding-right: 15px; font-weight: lighter;}
+#content #modifyform td { padding: 0 10px; border-left: hidden;}
+#content #modifyform td input {  vertical-align: top; padding: 0 10px; height: 30px; font-size: 15px; border: 1px solid}
+#content #modifyform  mark { background: none; color: red; display: inline-block;}
+
+#content #pwdCheckCircle { display:inline-block; margin-left:5px; background: black; width: 30px; height: 32px; }
+#content .phone_row { border-bottom: 1px solid black;}
+
+#content #modifyform .end_row th { padding-top: 30px;}
+#content #modifyform .end_row input[type="button"] { width: 150px; height: 40px; border-radius: 20px;}	
+
+#joinform mark { background: none; color: red; display: inline-block;}

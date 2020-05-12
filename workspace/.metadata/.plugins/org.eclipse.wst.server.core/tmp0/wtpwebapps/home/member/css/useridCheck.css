@@ -1,0 +1,13 @@
+@font-face { font-family: 'MapoPeacefull'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoPeacefullA.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+* { font-family: 'MapoPeacefull';}
+
+#container { width: 400px; margin: 50px auto;}
+.btns { outline: 0; cursor: pointer; background: #336600; color: white; font-size: 15px; border: 2px solid #336600; }
+
+h3 { text-align: center;}
+table, th, td { border: 1px solid black; border-collapse: collapse;}
+table { width: 100%;}
+tr { height: 70px;}
+td { text-align:center;}
+input[type="button"], input[type="submit"] {width: 100px;}

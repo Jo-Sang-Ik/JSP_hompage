@@ -1,0 +1,31 @@
+#content .move_page a { display: inline-block; padding: 10px; background: #999; color: white; width: 150px;
+	text-align: center; text-decoration: none;}
+#content #current_page { background: black;}
+
+#content { width: 1000px; height: 100%; margin: 0 auto;}
+#content h2 { text-align: center; }
+#content table { width: 100%; }
+#content table,th, td { border-bottom: 1px solid black; border-collapse: collapse;}
+#content tr { height: 40px; }
+#content th { background: #555; color: white; border: 1px solid white; font-weight: lighter;}
+#content .left { text-align: left; padding-left: 10px;}
+#content .center { text-align: center; }
+#content .right { text-align: right; padding-right: 10px;}
+#content .end_row td { text-align: right; padding-top: 20px; padding-right: 10px; border-left: hidden; border-right: hidden; border-bottom: hidden;
+	font-size: 20px; font-weight: bold;}
+
+#content #p_img { float: left;}
+#content #p_name { display: inline-block; width: 90px; margin-top: 65px; margin-left: 10px;}
+
+#content #quantity { width: 40px; text-align: right; margin-bottom: 5px; border: hidden; border-bottom: 1px solid black; text-align: center;}
+#content input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+#content a { text-decoration: none; color: black;}
+#content .cahnge_qty {cursor: pointer; width: 20px; height: 20px; background: black; color: white; border: 1px solid #555; }
+#content .form_btn { cursor: pointer; margin-bottom: 5px; background: white; border: 1px solid #555;}
+#content .cart_img { width: 50px; }
+
+
+#content #move { text-align: center; margin-top: 40px; color: blue;}
+#content #move a:first-child { display:inline-block; text-decoration: none; padding: 10px; background: black; color: white;}
+#content #move a:last-of-type { display:inline-block; text-decoration: none; padding: 10px; border: 1px solid #555; color: black;}

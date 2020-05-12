@@ -1,0 +1,12 @@
+#content { width: 1000px; margin: 50px auto; padding: 0 20px;}
+
+#content h2 { text-align: center; }
+#content table { width: 100%; }
+#content table, th, td { border: 1px solid black; border-collapse: collapse; }
+#content tr { height: 40px; }
+#content th { background: #555; color: white; font-weight: lighter;}
+#content td { padding-left: 10px;}
+#content td pre { height: 300px;}
+#content .end_row { text-align: right; }
+#content .end_row td { padding-top: 10px; padding-right: 10px; border-left: hidden; border-right: hidden; border-bottom: hidden;}
+
